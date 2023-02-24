@@ -107,7 +107,7 @@ public class HttpServer {
 
                     outputLine = apiJava.invoke(paramsFunction.get(0),paramsFunction.get(1));
                 } else if (query.startsWith("unaryInvoke") &&
-                        path.split("unaryInvoke")[1].split(",").length > 4) {
+                        path.split("unaryInvoke")[1].split(",").length >= 4) {
                     String param = path.split("unaryInvoke")[1];
                     List<String> paramsFunction = Stream.of(param.split(","))
                             .map((String parameter) -> parameter.replace("(", ""))
@@ -119,7 +119,7 @@ public class HttpServer {
                     outputLine = apiJava.unaryInvoke(paramsFunction.get(0), paramsFunction.get(1),
                             paramsFunction.get(2), paramsFunction.get(3));
                 } else if (query.startsWith("binaryInvoke") &&
-                        path.split("binaryInvoke")[1].split(",").length > 6) {
+                        path.split("binaryInvoke")[1].split(",").length >= 6) {
                     String param = path.split("binaryInvoke")[1];
                     List<String> paramsFunction = Stream.of(param.split(","))
                             .map((String parameter) -> parameter.replace("(", ""))
@@ -141,7 +141,7 @@ public class HttpServer {
             }
             out.println();
 
-            out.println("{ \"Data\":" + outputLine + " }");
+            out.println("{ \"Data\": " + outputLine + " }");
 
             out.close();
             in.close();
